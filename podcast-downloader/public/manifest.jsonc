@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "name": "UCSD Podcast Downloader",
+  "action": {
+    "default_title": "Click to open panel"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "permissions": ["scripting", "tabs", "sidePanel", "contextMenus"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
+  // Firefox sidebar, probably ignored in chrome 
+  "sidebar_action": {
+    "default_panel": "index.html",
+    "default_title": "UCSD Podcast Downloader",
+    "default_icon": "../public/vite.svg"
+  }
+  //Add icons at some point
+}

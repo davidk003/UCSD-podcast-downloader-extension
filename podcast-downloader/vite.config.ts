@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { jsoncToJSON } from "./plugins/vite-plugin-jsonc";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -16,5 +17,7 @@ export default defineConfig({
     },
     outDir: "dist",
   },
-  plugins: [react()],
+  plugins: [react(),
+    jsoncToJSON({ filename: "manifest.jsonc"}),
+  ],
 });
