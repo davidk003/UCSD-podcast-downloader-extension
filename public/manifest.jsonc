@@ -8,11 +8,23 @@
   "side_panel": {
     "default_path": "index.html"
   },
-  "permissions": ["scripting", "tabs", "sidePanel", "contextMenus"],
-  "host_permissions": ["http://*/*", "https://*/*"],
+  "permissions": [
+    "scripting",
+    "tabs",
+    "sidePanel",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
   "background": {
+    // Chrome uses service_worker
     "service_worker": "background.js",
-    "scripts": ["background.js"]
+    // Firefox uses background.scripts
+    "scripts": [
+      "background.js"
+    ]
   },
   // Firefox sidebar, probably ignored in chrome 
   "sidebar_action": {

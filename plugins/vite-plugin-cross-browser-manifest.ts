@@ -27,23 +27,32 @@ export function crossBrowserManifest(options: ManifestCleanerOptions): Plugin {
           let modified = false;
 
           if (options.target === 'chrome') {
+            // Chrome MV3 doesn't support sidebar_action
             if (manifest.sidebar_action) {
               delete manifest.sidebar_action;
               modified = true;
               console.log(`\n[manifest-cleaner] Removed 'sidebar_action' for Chrome build.`);
             }
+            // Chrome MV3 requires service_worker and forbids background.scripts
+            if (manifest.background && manifest.background.scripts) {
+              delete manifest.background.scripts;
+              modified = true;
+              console.log(`[manifest-cleaner] Removed 'background.scripts' for Chrome build.`);
+            }
           } else if (options.target === 'firefox') {
-             // Firefox supports sidebar_action, but might complain about side_panel or other things?
-             // Currently side_panel is Chrome-specific (Manifest V3), but Firefox is adopting it.
-             // For now, we leave side_panel unless we know it causes issues.
-             // If we wanted to be strict:
-             /*
+             // Firefox MV3 uses scripts (Event Pages) and ignores service_worker
+             // Removing service_worker to avoid potential issues in older versions
+             if (manifest.background && manifest.background.service_worker) {
+               delete manifest.background.service_worker;
+               modified = true;
+               console.log(`\n[manifest-cleaner] Removed 'background.service_worker' for Firefox build.`);
+             }
+             // Firefox MV3 uses sidebar_action, side_panel is Chrome-specific
              if (manifest.side_panel) {
                delete manifest.side_panel;
                modified = true;
-                console.log(`\n[manifest-cleaner] Removed 'side_panel' for Firefox build.`);
+               console.log(`[manifest-cleaner] Removed 'side_panel' for Firefox build.`);
              }
-             */
           }
 
           if (modified) {
