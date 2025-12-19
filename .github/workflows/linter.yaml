@@ -31,3 +31,8 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FIX_YAML_PRETTIER: true
+          FIX_TYPESCRIPT_PRETTIER: true
+          FIX_JSON_PRETTIER: true
+          FIX_JSONC_PRETTIER: true
+          VALIDATE_TYPESCRIPT_ES: true
