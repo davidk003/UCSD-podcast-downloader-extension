@@ -1,0 +1,27 @@
+{
+    "name": "UCSD Podcast Downloader Extension",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "mikestead.dotenv"
+            ]
+        }
+    },
+    "forwardPorts": [
+        5173
+    ],
+    "postCreateCommand": "corepack enable && pnpm install",
+    "remoteUser": "node",
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true
+        }
+    }
+}
