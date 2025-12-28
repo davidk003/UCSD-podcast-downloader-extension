@@ -1,5 +1,7 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
+import coreURL from "@ffmpeg/core/dist/esm/ffmpeg-core.js?url";
+import wasmURL from "@ffmpeg/core/dist/esm/ffmpeg-core.wasm?url";
 
 export interface SubtitleInput {
   url: string;
@@ -20,32 +22,23 @@ export interface ProcessingOptions {
 
 export class FFmpegProcessor {
   private ffmpeg: FFmpeg | null = null;
-  private isLoaded: boolean = false;
 
   /**
    * Initialize and load the FFmpeg engine
    */
   async load(): Promise<void> {
-    if (this.isLoaded && this.ffmpeg) return;
+    if (this.ffmpeg) return;
 
     try {
       this.ffmpeg = new FFmpeg();
 
-      // Use single-threaded version to avoid SharedArrayBuffer requirements
-      const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm";
+      // Load from local package instead of CDN
       await this.ffmpeg.load({
-        coreURL: await toBlobURL(
-          `${baseURL}/ffmpeg-core.js`,
-          "text/javascript"
-        ),
-        wasmURL: await toBlobURL(
-          `${baseURL}/ffmpeg-core.wasm`,
-          "application/wasm"
-        ),
+        coreURL: await toBlobURL(coreURL, "text/javascript"),
+        wasmURL: await toBlobURL(wasmURL, "application/wasm"),
       });
-
-      this.isLoaded = true;
     } catch (error) {
+      this.ffmpeg = null;
       console.error("Failed to load FFmpeg:", error);
       throw new Error(`Failed to load FFmpeg: ${error}`);
     }
@@ -89,7 +82,7 @@ export class FFmpegProcessor {
    * @returns Blob URL of the final video
    */
   async processVideo(options: ProcessingOptions): Promise<string> {
-    if (!this.isLoaded || !this.ffmpeg) {
+    if (!this.ffmpeg) {
       await this.load();
     }
     const ffmpeg = this.ffmpeg!;
