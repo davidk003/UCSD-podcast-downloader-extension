@@ -1,4 +1,4 @@
-import { FFmpeg } from "@ffmpeg/ffmpeg";
+import { FFmpeg, type FileData } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import coreURL from "@ffmpeg/core/dist/esm/ffmpeg-core.js?url";
 import wasmURL from "@ffmpeg/core/dist/esm/ffmpeg-core.wasm?url";
@@ -14,14 +14,13 @@ export interface ProcessingOptions {
   videoUrl: string;
   subtitles: SubtitleInput[];
   onProgress?: (progress: number) => void;
-  onLog?: (
-    message: string,
-    type: "info" | "error" | "success" | "warning"
-  ) => void;
 }
 
 export class FFmpegProcessor {
   private ffmpeg: FFmpeg | null = null;
+  public ffmpegLoaded: boolean = false;
+  public videoLoaded: boolean = false;
+  public subtitlesLoaded: boolean = false;
 
   /**
    * Initialize and load the FFmpeg engine
@@ -39,29 +38,44 @@ export class FFmpegProcessor {
       });
     } catch (error) {
       this.ffmpeg = null;
+      this.ffmpegLoaded = false;
       console.error("Failed to load FFmpeg:", error);
       throw new Error(`Failed to load FFmpeg: ${error}`);
+    }
+    this.ffmpegLoaded = true;
+  }
+
+  /**
+   * Helper to cleanup files from FFmpeg virtual filesystem
+   * @param filenames - Array of filenames to delete
+   */
+  private async cleanupFiles(...filenames: string[]): Promise<void> {
+    if (!this.ffmpeg) return;
+
+    for (const filename of filenames) {
+      try {
+        await this.ffmpeg.deleteFile(filename);
+      } catch(error) {
+        console.error(`Error during file cleanup: ${filename}: ${error}`);
+      }
     }
   }
 
   /**
    * Helper to download a file with proxy fallback
+   * @param url - The URL of the file to download
+   * @param filename - The filename to save the file as
    */
-  private async downloadFile(
-    url: string,
-    filename: string,
-    onLog?: (msg: string, type: "info" | "warning" | "success") => void
-  ): Promise<void> {
+  private async downloadFile(url: string, filename: string): Promise<void> {
     if (!this.ffmpeg) throw new Error("FFmpeg not initialized");
 
     try {
       await this.ffmpeg.writeFile(filename, await fetchFile(url));
     } catch (error) {
-      if (onLog)
-        onLog(
-          `Direct download failed for ${filename}, trying via proxy...`,
-          "warning"
-        );
+      console.error(error);
+      console.error(
+        `Failed to download ${filename} from ${url}: ${error}`
+      );
 
       // Fallback to proxy if direct download fails (CORS)
       try {
@@ -70,6 +84,7 @@ export class FFmpegProcessor {
         )}`;
         await this.ffmpeg.writeFile(filename, await fetchFile(proxyUrl));
       } catch (proxyError) {
+        console.error(proxyError);
         throw new Error(
           `Failed to download ${filename} even with proxy: ${proxyError}`
         );
@@ -87,116 +102,120 @@ export class FFmpegProcessor {
     }
     const ffmpeg = this.ffmpeg!;
 
-    // Create progress handler so we can remove it later (prevents listener accumulation)
+    // Create progress handler so we can remove it later
     const progressHandler = ({ progress }: { progress: number }) => {
       if (options.onProgress) options.onProgress(Math.round(progress * 100));
     };
     ffmpeg.on("progress", progressHandler);
 
-    const { videoUrl, subtitles, onLog } = options;
-    const subFiles: string[] = [];
+    const { videoUrl, subtitles } = options;
+    let subFiles: string[] = [];
 
     try {
-      // 1. Download Video
-      if (onLog) onLog("Downloading video file...", "info");
-      await this.downloadFile(videoUrl, "input.mp4", onLog);
-      if (onLog) onLog("Video downloaded successfully", "success");
+      // Download Video
+      console.log("Downloading video file...");
+      await this.downloadFile(videoUrl, "input.mp4");
+      console.log("Video downloaded successfully");
 
-      // 2. Download Subtitles
-      if (subtitles.length > 0) {
-        if (onLog) onLog("Downloading subtitle files...", "info");
+      // Download Subtitles
+      console.log("Downloading subtitle files...");
+      subFiles = await this.downloadSubtitles(subtitles);
+      console.log("Subtitle files downloaded successfully");
 
-        for (let i = 0; i < subtitles.length; i++) {
-          const sub = subtitles[i];
-          const filename = sub.filename || `sub_${i}.srt`;
-
-          try {
-            await this.downloadFile(sub.url, filename, onLog);
-            subFiles.push(filename);
-            if (onLog) onLog(`Downloaded subtitle: ${sub.label}`, "success");
-          } catch (e) {
-            if (onLog)
-              onLog(`Failed to download subtitle: ${sub.label}`, "warning");
-          }
-        }
-      }
-
-      // 3. Process
+      // Process video and subtitles
       if (subFiles.length > 0) {
-        if (onLog) onLog("Embedding subtitles...", "info");
+        console.log("Generating FFmpeg command...");
+        const cmd = this.generateFfmpegCommand(subFiles, subtitles);
 
-        const cmd = ["-i", "input.mp4"];
-
-        // Add subtitle inputs
-        subFiles.forEach((file) => cmd.push("-i", file));
-
-        // Map streams
-        cmd.push("-c:v", "copy");
-        cmd.push("-c:a", "copy");
-        cmd.push("-c:s", "mov_text"); // mp4 compatible subtitles
-
-        cmd.push("-map", "0:v");
-        cmd.push("-map", "0:a");
-
-        subFiles.forEach((_, i) => {
-          cmd.push("-map", `${i + 1}:0`);
-          const lang = subtitles[i]?.language || "eng";
-          cmd.push(`-metadata:s:s:${i}`, `language=${lang}`);
-          if (subtitles[i]?.label) {
-            cmd.push(`-metadata:s:s:${i}`, `title=${subtitles[i].label}`);
-          }
-        });
-
-        cmd.push("output.mp4");
-
-        if (onLog) onLog("Running FFmpeg command...", "info");
+        console.log("Executing FFmpeg command...");
         await ffmpeg.exec(cmd);
-        if (onLog) onLog("FFmpeg processing complete", "success");
-
-        const data = await ffmpeg.readFile("output.mp4");
-        return URL.createObjectURL(
-          new Blob([data as any], { type: "video/mp4" })
-        );
-      } else {
-        if (onLog)
-          onLog(
-            "No subtitles to filter, passing through original video...",
-            "info"
-          );
-        const data = await ffmpeg.readFile("input.mp4");
-        return URL.createObjectURL(
-          new Blob([data as any], { type: "video/mp4" })
-        );
+        console.log("FFmpeg command complete");
       }
+      
+      const filename = (subFiles.length > 0) ? "output.mp4" : "input.mp4";
+      const data: FileData = await ffmpeg.readFile(filename);
+      return URL.createObjectURL(
+        new Blob([(data as Uint8Array).buffer as ArrayBuffer], { type: "video/mp4" })
+      );
     } catch (error: any) {
-      if (onLog) onLog(`Processing failed: ${error.message}`, "error");
+      console.error(`Processing failed: ${error.message}`);
       throw error;
     } finally {
-      // Remove progress listener to prevent accumulation on subsequent calls
+      // Remove progress listener
       ffmpeg.off("progress", progressHandler);
-
       // Cleanup files from ffmpeg virtual filesystem
-      try {
-        await ffmpeg.deleteFile("input.mp4");
-      } catch {
-        // ignore if file doesn't exist
-      }
-      try {
-        await ffmpeg.deleteFile("output.mp4");
-      } catch {
-        // ignore if file doesn't exist
-      }
-      // Delete subtitle files
-      for (const subFile of subFiles) {
-        try {
-          await ffmpeg.deleteFile(subFile);
-        } catch {
-          // ignore cleanup errors
-        }
-      }
+      const outputFile = (subFiles.length > 0) ? "output.mp4" : "input.mp4";
+      console.log("Cleaning up files...");
+      await this.cleanupFiles("input.mp4", outputFile, ...subFiles);
+      console.log("Files cleaned up");
     }
   }
+
+  /**
+   * Download subtitle files
+   * @param subtitles - Array of subtitle inputs to download
+   * @returns Array of successfully downloaded subtitle filenames
+   */
+  private async downloadSubtitles(
+    subtitles: SubtitleInput[],
+  ): Promise<string[]> {
+    const subFiles: string[] = [];
+
+    if (subtitles.length === 0) return subFiles;
+
+    console.log("Downloading subtitle files...");
+
+    for (let i = 0; i < subtitles.length; i++) {
+      const sub = subtitles[i];
+      const filename = sub.filename || `sub_${i}.srt`;
+
+      try {
+        await this.downloadFile(sub.url, filename);
+        subFiles.push(filename);
+        console.log(`Downloaded subtitle: ${sub.label}`);
+      } catch (e) {
+        console.error(`Failed to download subtitle: ${sub.label}`);
+      }
+    }
+
+    return subFiles;
+  }
+
+  private generateFfmpegCommand(
+    subFiles: string[],
+    subtitles: SubtitleInput[],
+  ): string[] {
+    const cmd: string[] = ["-i", "input.mp4"];
+  
+    // Add subtitle inputs
+    subFiles.forEach((file) => cmd.push("-i", file));
+  
+    // Map streams
+    cmd.push("-c:v", "copy");
+    cmd.push("-c:a", "copy");
+    cmd.push("-c:s", "mov_text"); // mp4 compatible subtitles
+  
+    cmd.push("-map", "0:v");
+    cmd.push("-map", "0:a");
+  
+    subFiles.forEach((_, i) => {
+      cmd.push("-map", `${i + 1}:0`);
+      const lang = subtitles[i]?.language || "eng";
+      cmd.push(`-metadata:s:s:${i}`, `language=${lang}`);
+      if (subtitles[i]?.label) {
+        cmd.push(`-metadata:s:s:${i}`, `title=${subtitles[i].label}`);
+      }
+    });
+  
+    cmd.push("output.mp4");
+  
+    return cmd;
+  }
+  
 }
+
+  
+
 
 // Export a singleton instance for convenience
 export const ffmpegProcessor = new FFmpegProcessor();
