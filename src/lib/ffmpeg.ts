@@ -6,21 +6,23 @@ import wasmURL from "@ffmpeg/core/dist/esm/ffmpeg-core.wasm?url";
 export interface SubtitleInput {
   url: string;
   language: string; // e.g. 'eng'
-  label: string; // e.g. 'English'
-  filename?: string; // Optional custom filename, defaults to sub_{i}.srt
+  label: string; // Track label
 }
 
 export interface ProcessingOptions {
   videoUrl: string;
   subtitles: SubtitleInput[];
-  onProgress?: (progress: number) => void;
+  onProgress: (progress: number) => void;
 }
 
 export class FFmpegProcessor {
+  private MAX_RETRIES: number;
   private ffmpeg: FFmpeg | null = null;
   public ffmpegLoaded: boolean = false;
-  public videoLoaded: boolean = false;
-  public subtitlesLoaded: boolean = false;
+
+  constructor(maxRetries: number = 3) {
+    this.MAX_RETRIES = maxRetries;
+  }
 
   /**
    * Initialize and load the FFmpeg engine
@@ -68,26 +70,13 @@ export class FFmpegProcessor {
    */
   private async downloadFile(url: string, filename: string): Promise<void> {
     if (!this.ffmpeg) throw new Error("FFmpeg not initialized");
-
-    try {
-      await this.ffmpeg.writeFile(filename, await fetchFile(url));
-    } catch (error) {
-      console.error(error);
-      console.error(
-        `Failed to download ${filename} from ${url}: ${error}`
-      );
-
-      // Fallback to proxy if direct download fails (CORS)
+    // Try direct download with retries
+    for (let attempt = 0; attempt < this.MAX_RETRIES; attempt++) {
       try {
-        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
-          url
-        )}`;
-        await this.ffmpeg.writeFile(filename, await fetchFile(proxyUrl));
-      } catch (proxyError) {
-        console.error(proxyError);
-        throw new Error(
-          `Failed to download ${filename} even with proxy: ${proxyError}`
-        );
+        await this.ffmpeg.writeFile(filename, await fetchFile(url));
+        return; // exit early
+      } catch (error) {
+        console.error(`Direct download attempt ${attempt}/${this.MAX_RETRIES} failed for ${filename}: ${error}`);
       }
     }
   }
@@ -167,7 +156,7 @@ export class FFmpegProcessor {
 
     for (let i = 0; i < subtitles.length; i++) {
       const sub = subtitles[i];
-      const filename = sub.filename || `sub_${i}.srt`;
+      const filename =`sub_${i}.srt`;
 
       try {
         await this.downloadFile(sub.url, filename);
