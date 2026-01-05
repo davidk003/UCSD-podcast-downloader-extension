@@ -1,0 +1,1 @@
+// Assume in these tests that only html as file is given
