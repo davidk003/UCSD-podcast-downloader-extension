@@ -1,0 +1,739 @@
+<!DOCTYPE html><html lang="en" slick-uniqueid="3"><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>CSE 11 - Accel. Intro to Programming - LE [A00] - Course Podcasts - UC San Diego</title>
+<script src="/js/mootools-core-1.6.0.js" type="text/javascript"></script>
+<script src="/js/mootools-more-1.6.0-compressed.js" type="text/javascript"></script>
+
+<!-- required for jstorage.js-->
+<script src="/js/json2.js"></script>
+<!-- Custom modified to attach to MooTool's $ / document.id -->
+<script src="/js/jstorage.js" type="text/javascript"></script>
+
+<link href="/active-cherry/css/base-min.css" rel="stylesheet">
+<link href="/active-cherry/css/cms-min.css" rel="stylesheet">
+
+<script type="text/javascript">
+	function initCopyright() {}
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Podcast.ucsd.edu offers free audio recordings of UC San Diego class lectures for download onto your music player or computer.">
+<meta name="keywords" content="podcast, itunes, mp3, UCSD, UC, San Diego, UC San Diego, ACS, academic computing services, academic, computing,
+	services, instructional web development center, web development">
+<meta name="robots" content="all">
+<meta name="author" content="Academic Computing Services - Instructional Web Development Center at UC San Diego">
+
+<link rel="shortcut icon" href="/img/favicon.ico" type="image/png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png" type="image/png">
+
+<link rel="stylesheet" type="text/css" href="/css/screen4b.css?ts=1561586332" media="screen">
+<link rel="stylesheet" type="text/css" href="/css/screen5.css?ts=1681762334" media="screen">
+
+<script src="/active-cherry/js/base-min.js" type="text/javascript"></script>
+<script src="/active-cherry/js/cms-min.js" type="text/javascript"></script>
+<script src="//www.ucsd.edu/common/_emergency-broadcast/message.js" type="text/javascript" defer="true" async="true"></script>
+</head>
+
+<body>
+
+<div id="uc-emergency"></div>
+<!-- .If you want a login strip to appear above the header if user is logged into SSO -->
+
+<div id="tdr_login"><!-- Start page controls -->
+
+<div id="tdr_login_content"></div> <!-- End page controls -->
+</div>
+<script src="/js/SSOBug.js" type="text/javascript" defer="true" async="true"></script>
+
+<div id="tdr_title">
+	
+<div id="tdr_title_content"><a id="tdr_title_ucsd_title" href="https://www.ucsd.edu/">UC San Diego</a>
+		
+<div id="tdr_title_page_title"><a href="https://blink.ucsd.edu/technology/computers/basics/ACMS/index.html">Educational Technology Services</a></div>
+	</div>
+</div>
+
+<div id="tdr_nav">
+	<div id="tdr_nav_content">
+		<ul id="tdr_nav_list" class="sf-js-enabled sf-shadow">
+		
+<div id="ctl01_LoginPanel">
+	
+	<li class="right"><a href="../../Login/?dest=%2fwatch%2ffa25%2fcse11_a00">Log In</a></li>
+
+</div>
+
+
+
+
+
+
+		<li><a href="/">Podcasts</a></li>
+		<li><a href="https://blink.ucsd.edu/faculty/instruction/">Faculty</a></li>
+		<li><a href="https://blink.ucsd.edu/faculty/instruction/tech-guide/index.html">Services</a></li>
+		<li><a href="https://servicedesk.ucsd.edu">Contact</a></li>
+
+		</ul>
+	</div>
+</div>
+
+<div id="tdr_content" class="tdr_fonts itag_webapp">
+	
+<div id="tdr_content_content">
+
+
+
+
+
+
+<!-- Heavily modified to work with Moootooools -->
+<script src="/js/mootools.peity.js" type="text/javascript"></script>
+<script src="/js/hider.js?ts=1504918275" type="text/javascript"></script>
+<script src="/js/player.page_events.js?ts=1667601131" type="text/javascript"></script>
+<script type="text/javascript">
+(function($){
+	window.addEvent("domready", function()
+		{
+		contentHider($('subscribeContainer'),$('subscribeButton'),$('subscribeInstructions'));
+		contentHider($('helpContainer'),$('helpButton'),$('helpInstructions'));
+		});
+	})(document.id);
+</script>
+
+
+
+<div id="accessGranted_Panel">
+	
+	<div id="tdr_2_col_content">
+		<div id="content" class="grid_11">
+
+		<!-- Start course information -->
+		<h1><span id="title_Label">CSE 11 - Accel. Intro to Programming - LE [A00]</span></h1>
+
+		<ul class="meta">
+			<li class="first">Professor <span id="author_Label">Cao, Yingjun</span></li>
+			<li><span id="quarter_Label">Fall 2025</span></li>
+			
+			<li>
+				<div id="helpContainer" class="calloutAnchor">
+					<input id="helpButton" type="button" class="button secondary" value="Tips">
+					<div id="helpInstructions" class="callout bottom-left" tabindex="-1">
+						<h3>Keyboard shortcuts</h3>
+						<ul>
+							<li><span class="shortcut"><span>↑</span> / <span>↓</span></span> - <span class="action">increase / decrease volume</span></li>
+							<li><span class="shortcut"><span>[</span> / <span>]</span></span> - <span class="action">increase / decrease playback speed by 10%</span></li>
+							<li><span class="shortcut"><span>j</span> / <span>l</span></span> - <span class="action">15 second jump back / forward</span></li>
+							<li><span class="shortcut"><span>J</span> / <span>L</span></span> - <span class="action">60 second jump back / forward</span></li>
+							<li><span class="shortcut"><span>space</span></span> - <span class="action">pause</span></li>
+							<li><span class="shortcut"><span>0</span>-<span>9</span></span> - <span class="action">Jump to that tenth of the podcast</span></li>
+						</ul>
+						<h3>Link to a time</h3>
+						<p>Add a #time to the end of the URL, e.g. #356 or #5:56 to start 5 minutes 56 seconds into the recording</p>
+						<p><a id="currentTime" base_href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/19/screen" href="" target="_blank">Link</a> - <button id="updateCurrentTime" class="button">Set to Now</button></p>
+						
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<!-- End course information -->
+
+		
+
+		
+
+		<!-- Start Lecture -->
+		<form method="post" action="./cse11_a00?term=fa25&amp;course=cse11_a00&amp;lecture=&amp;type=" id="ctl09">
+	<div class="aspNetHidden">
+	<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+	<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+	<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMjIxNzY2MTcxDxYKHgZmaWxlSWQCpf1DHglwb2RjYXN0SWQC5psBHgpsZWN0dXJlTnVtAhMeBXZpZGVvZx4TVmFsaWRhdGVSZXF1ZXN0TW9kZQIBFg5mDxYCHgRUZXh0BTJDU0UgMTEgLSBBY2NlbC4gSW50cm8gdG8gUHJvZ3JhbW1pbmcgLSBMRSBbQTAwXSAtIGQCAQ9kFgQCAg8PFgIeB1Zpc2libGVnZBYCAgEPDxYCHgtOYXZpZ2F0ZVVybAUpfi9Mb2dpbi8/ZGVzdD0lMmZ3YXRjaCUyZmZhMjUlMmZjc2UxMV9hMDBkZAIED2QWAgIBDw8WAh8HBQl+L0xvZ291dC9kZAICDw8WAh8GaGQWBAIBDw8WAh8FBS9DU0UgMTEgLSBBY2NlbC4gSW50cm8gdG8gUHJvZ3JhbW1pbmcgLSBMRSBbQTAwXWRkAgUPFgIfBQU0dGVybT0nZmEyNSc7IGNvdXJzZT0nY3NlMTFfYTAwJzsgbGVjdHVyZT0nJywgdHlwZT0nJ2QCAw8PFgIfBmdkFhACAQ8PFgIfBQUvQ1NFIDExIC0gQWNjZWwuIEludHJvIHRvIFByb2dyYW1taW5nIC0gTEUgW0EwMF1kZAIDDw8WAh8FBQxDYW8sIFlpbmdqdW5kZAIFDw8WAh8FBQlGYWxsIDIwMjVkZAIHDxYCHwZoFgJmDxUFBGF1dGgycG9kY2FzdC51Y3NkLmVkdS9Qb2RjYXN0cy9yc3MuYXNweD9wb2RjYXN0SWQ9MTk5NDIycG9kY2FzdC51Y3NkLmVkdS9Qb2RjYXN0cy9yc3MuYXNweD9wb2RjYXN0SWQ9MTk5NDIycG9kY2FzdC51Y3NkLmVkdS9Qb2RjYXN0cy9yc3MuYXNweD9wb2RjYXN0SWQ9MTk5NDIycG9kY2FzdC51Y3NkLmVkdS9Qb2RjYXN0cy9yc3MuYXNweD9wb2RjYXN0SWQ9MTk5NDJkAggPFQE3aHR0cHM6Ly9wb2RjYXN0LnVjc2QuZWR1L3dhdGNoL2ZhMjUvY3NlMTFfYTAwLzE5L3NjcmVlbmQCCQ8PFgIfBmhkFgJmDxUBAGQCCw8PFgIfBmhkFgJmDxUBAGQCDQ9kFgQCAQ8PFgIfBmdkFhACAQ8WAh8FBQpMZWN0dXJlIDE5ZAIDDxYCHwUFCTEyLzQvMjAyNWQCBQ8WAh8FBRc4OjAwIEFNLUNlbnRlciBIYWxsIDExNWQCBw9kFgICAQ8WAh4LXyFJdGVtQ291bnQC/////w9kAgkPZBYEAgEPFgIfCAL/////D2QCAw8PFgIfBmdkZAILDw8WAh8GZ2QWBgIBDxUCAzgwMAM1MjhkAgIPDxYCHwZoZBYEZg8UKwIEBQoxXzJjdmFmODhiBQoxXzJjdmFmODhiZAWkAWRqSjhNak15TXpFeE1YeEpHNUFRWUVXUjVqNUFpUVkyUDZaRFBtTENjWGtsMDBsUmI1eDRoLXJQSU1JNTJ3bDY2cDF1OElKdjVKQmdLaFU5OWVRWUpla3FRSDBCX0ZrTms2WE90TnloSDFPQW9WUW5fSzdFSkdHNjhONloyTFhURm9VSUU0UjBmVlhxX2h5ZGh4UHlCSkVhQm8xTkU3VEZLYWJ4ZAIBDxYCHwUFth48cD5HZW5lcmF0aW5nIGEgc2Vzc2lvbiB3aXRoIHBpZD0nMjMyMzExMScsIGFzPScqKmFkbWluU2VjcmV0KionLCB1c2VyX2lkPSdtYXR0aGV3ZicsIHRpbWVvdXQ9Jzg2NDAwJy48L3A+PHA+dXJsOiBbaHR0cHM6Ly93d3cua2FsdHVyYS5jb20vYXBpX3YzL3NlcnZpY2UvbWVkaWEvYWN0aW9uL2xpc3RdPC9wPjxwPmZ1bGwgcmVxZXVzdCBkYXRhOiBbeyJhcGlWZXJzaW9uIjoiMy4zLjAiLCJjbGllbnRUYWciOiJkb3RuZXQ6MTgtMDYtMDUiLCJmaWx0ZXIiOnsiY2F0ZWdvcmllc0lkc01hdGNoQW5kIjoiMzkwNzA3MzQzIiwiaWRFcXVhbCI6IjFfMmN2YWY4OGIiLCJvYmplY3RUeXBlIjoiS2FsdHVyYU1lZGlhRW50cnlGaWx0ZXIifSwiZm9ybWF0IjoyLCJrYWxzaWciOiJlZDZlOWQyN2UyN2RlNDE2ZDBhYmYxMjc3ZmUyMzQ2YSIsImtzIjoiZGpKOE1qTXlNekV4TVh3aHdsZnUyU1ZKOF9EcXNyczZJVnpKM29tOWxlLWY5TjRlSHdNemh1bUpIY1FSTTR6X2UwZldxYXhoLTVKTVo4blZlakdfcHpRQm4zVFJpZDRaOVp0d1ZzMHppNlNxMkhGbndPVENhcm5fNVE9PSIsInBhZ2VyIjp7Im9iamVjdFR5cGUiOiJLYWx0dXJhRmlsdGVyUGFnZXIiLCJwYWdlSW5kZXgiOjEsInBhZ2VTaXplIjoxMH19XTwvcD48cD5yZXN1bHQgKHNlcmlhbGl6ZWQpOiA8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJ1dGYtOCI/Pjx4bWw+PHJlc3VsdD48b2JqZWN0VHlwZT5LYWx0dXJhTWVkaWFMaXN0UmVzcG9uc2U8L29iamVjdFR5cGU+PHJlbGF0ZWRPYmplY3RzPjwvcmVsYXRlZE9iamVjdHM+PHRvdGFsQ291bnQ+MTwvdG90YWxDb3VudD48b2JqZWN0cz48aXRlbT48b2JqZWN0VHlwZT5LYWx0dXJhTWVkaWFFbnRyeTwvb2JqZWN0VHlwZT48cmVsYXRlZE9iamVjdHM+PC9yZWxhdGVkT2JqZWN0cz48aWQ+MV8yY3ZhZjg4YjwvaWQ+PG5hbWU+TGVjdHVyZSAxOSAtIERlY2VtYmVyIDR0aCAyMDI1IC0gQ1NFIDExIC0gTEUgW0EwMF08L25hbWU+PGRlc2NyaXB0aW9uPkNTRSAxMSAtIEFjY2VsLiBJbnRybyB0byBQcm9ncmFtbWluZyAtIExFIFtBMDBdIC0gUHJvZmVzc29yIENhbywgWWluZ2p1biAtIDg6MDAgQU0gLSBDZW50ZXIgSGFsbCAxMTU8L2Rlc2NyaXB0aW9uPjxwYXJ0bmVySWQ+MjMyMzExMTwvcGFydG5lcklkPjx1c2VySWQ+eWljMjQyPC91c2VySWQ+PGNyZWF0b3JJZD55aWMyNDI8L2NyZWF0b3JJZD48dGFncz51YyBzYW4gZGllZ28gcG9kY2FzdDwvdGFncz48YWRtaW5UYWdzPjwvYWRtaW5UYWdzPjxjYXRlZ29yaWVzPjwvY2F0ZWdvcmllcz48Y2F0ZWdvcmllc0lkcz48L2NhdGVnb3JpZXNJZHM+PHN0YXR1cz4yPC9zdGF0dXM+PG1vZGVyYXRpb25TdGF0dXM+NjwvbW9kZXJhdGlvblN0YXR1cz48bW9kZXJhdGlvbkNvdW50PjA8L21vZGVyYXRpb25Db3VudD48dHlwZT4xPC90eXBlPjxjcmVhdGVkQXQ+MTc2NDg3MjEyNDwvY3JlYXRlZEF0Pjx1cGRhdGVkQXQ+MTc2NDg3MjY0NzwvdXBkYXRlZEF0PjxyYW5rPjA8L3Jhbms+PHRvdGFsUmFuaz4wPC90b3RhbFJhbms+PHZvdGVzPjA8L3ZvdGVzPjxncm91cElkPjwvZ3JvdXBJZD48cGFydG5lckRhdGE+PC9wYXJ0bmVyRGF0YT48ZG93bmxvYWRVcmw+aHR0cHM6Ly9jZG5hcGlzZWMua2FsdHVyYS5jb20vcC8yMzIzMTExL3NwLzIzMjMxMTEwMC9wbGF5TWFuaWZlc3QvZW50cnlJZC8xXzJjdmFmODhiL2Zvcm1hdC9kb3dubG9hZC9wcm90b2NvbC9odHRwcy9mbGF2b3JQYXJhbUlkcy8wPC9kb3dubG9hZFVybD48c2VhcmNoVGV4dD5fUEFSX09OTFlfIF8yMzIzMTExXyBfTUVESUFfVFlQRV8xfCAgTGVjdHVyZSAxOSAtIERlY2VtYmVyIDR0aCAyMDI1IC0gQ1NFIDExIC0gTEUgW0EwMF0gdWMgc2FuIGRpZWdvIHBvZGNhc3QgQ1NFIDExIC0gQWNjZWwuIEludHJvIHRvIFByb2dyYW1taW5nIC0gTEUgW0EwMF0gLSBQcm9mZXNzb3IgQ2FvLCBZaW5nanVuIC0gODowMCBBTSAtIENlbnRlciBIYWxsIDExNSA8L3NlYXJjaFRleHQ+PGxpY2Vuc2VUeXBlPi0xPC9saWNlbnNlVHlwZT48dmVyc2lvbj4wPC92ZXJzaW9uPjx0aHVtYm5haWxVcmw+aHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9wLzIzMjMxMTEvc3AvMjMyMzExMTAwL3RodW1ibmFpbC9lbnRyeV9pZC8xXzJjdmFmODhiL3ZlcnNpb24vMTAwMDAxPC90aHVtYm5haWxVcmw+PGFjY2Vzc0NvbnRyb2xJZD41MTg2ODUzPC9hY2Nlc3NDb250cm9sSWQ+PHN0YXJ0RGF0ZT48L3N0YXJ0RGF0ZT48ZW5kRGF0ZT48L2VuZERhdGU+PHJlZmVyZW5jZUlkPjwvcmVmZXJlbmNlSWQ+PHJlcGxhY2luZ0VudHJ5SWQ+PC9yZXBsYWNpbmdFbnRyeUlkPjxyZXBsYWNlZEVudHJ5SWQ+PC9yZXBsYWNlZEVudHJ5SWQ+PHJlcGxhY2VtZW50U3RhdHVzPjA8L3JlcGxhY2VtZW50U3RhdHVzPjxwYXJ0bmVyU29ydFZhbHVlPjA8L3BhcnRuZXJTb3J0VmFsdWU+PGNvbnZlcnNpb25Qcm9maWxlSWQ+MjA1ODM3NDI8L2NvbnZlcnNpb25Qcm9maWxlSWQ+PHJlZGlyZWN0RW50cnlJZD48L3JlZGlyZWN0RW50cnlJZD48cm9vdEVudHJ5SWQ+MV8yY3ZhZjg4Yjwvcm9vdEVudHJ5SWQ+PHBhcmVudEVudHJ5SWQ+PC9wYXJlbnRFbnRyeUlkPjxvcGVyYXRpb25BdHRyaWJ1dGVzPjwvb3BlcmF0aW9uQXR0cmlidXRlcz48ZW50aXRsZWRVc2Vyc0VkaXQ+eWljMjQyPC9lbnRpdGxlZFVzZXJzRWRpdD48ZW50aXRsZWRVc2Vyc1B1Ymxpc2g+eWljMjQyPC9lbnRpdGxlZFVzZXJzUHVibGlzaD48ZW50aXRsZWRVc2Vyc1ZpZXc+eWljMjQyPC9lbnRpdGxlZFVzZXJzVmlldz48Y2FwYWJpbGl0aWVzPjwvY2FwYWJpbGl0aWVzPjx0ZW1wbGF0ZUVudHJ5SWQ+PC90ZW1wbGF0ZUVudHJ5SWQ+PGRpc3BsYXlJblNlYXJjaD4xPC9kaXNwbGF5SW5TZWFyY2g+PGFwcGxpY2F0aW9uPjwvYXBwbGljYXRpb24+PGFwcGxpY2F0aW9uVmVyc2lvbj48L2FwcGxpY2F0aW9uVmVyc2lvbj48YmxvY2tBdXRvVHJhbnNjcmlwdD4wPC9ibG9ja0F1dG9UcmFuc2NyaXB0PjxkZWZhdWx0TGFuZ3VhZ2U+PC9kZWZhdWx0TGFuZ3VhZ2U+PHJlc3BvbnNlTGFuZ3VhZ2U+PC9yZXNwb25zZUxhbmd1YWdlPjxwbGF5cz4yMjM8L3BsYXlzPjx2aWV3cz4yODY8L3ZpZXdzPjxsYXN0UGxheWVkQXQ+MTc2ODExODQwMDwvbGFzdFBsYXllZEF0Pjx3aWR0aD44MDA8L3dpZHRoPjxoZWlnaHQ+NTI4PC9oZWlnaHQ+PGR1cmF0aW9uPjQ4NjA8L2R1cmF0aW9uPjxtc0R1cmF0aW9uPjQ4NTk3NTM8L21zRHVyYXRpb24+PGR1cmF0aW9uVHlwZT48L2R1cmF0aW9uVHlwZT48bWVkaWFUeXBlPjE8L21lZGlhVHlwZT48Y29udmVyc2lvblF1YWxpdHk+MjA1ODM3NDI8L2NvbnZlcnNpb25RdWFsaXR5Pjxzb3VyY2VUeXBlPjU8L3NvdXJjZVR5cGU+PHNvdXJjZVZlcnNpb24+PC9zb3VyY2VWZXJzaW9uPjxzZWFyY2hQcm92aWRlclR5cGU+PC9zZWFyY2hQcm92aWRlclR5cGU+PHNlYXJjaFByb3ZpZGVySWQ+PC9zZWFyY2hQcm92aWRlcklkPjxjcmVkaXRVc2VyTmFtZT48L2NyZWRpdFVzZXJOYW1lPjxjcmVkaXRVcmw+PC9jcmVkaXRVcmw+PG1lZGlhRGF0ZT48L21lZGlhRGF0ZT48ZGF0YVVybD5odHRwczovL2NkbmFwaXNlYy5rYWx0dXJhLmNvbS9wLzIzMjMxMTEvc3AvMjMyMzExMTAwL3BsYXlNYW5pZmVzdC9lbnRyeUlkLzFfMmN2YWY4OGIvZm9ybWF0L3VybC9wcm90b2NvbC9odHRwczwvZGF0YVVybD48Zmxhdm9yUGFyYW1zSWRzPjAsNDg3MDYxLDUwOTU0OTM8L2ZsYXZvclBhcmFtc0lkcz48aXNUcmltRGlzYWJsZWQ+PC9pc1RyaW1EaXNhYmxlZD48c3RyZWFtcz48L3N0cmVhbXM+PC9pdGVtPjwvb2JqZWN0cz48L3Jlc3VsdD48ZXhlY3V0aW9uVGltZT4wLjAzMjE2MDk5NzM5MDc0NzwvZXhlY3V0aW9uVGltZT48L3htbD48L3A+PHA+ZXhlY3V0aW9uIHRpbWUgZm9yIFsvc2VydmljZS9tZWRpYS9hY3Rpb24vbGlzdF06IFswMDowMDowMC4xODc0NTQ2XTwvcD5kAgMPFRkHMjMyMzExMQcyMzIzMTExCDUxOTExNjcyBzIzMjMxMTEiL2pzL2thbHR1cmFIZWxwZXIuanM/dHM9MTY4NzI5ODkzMBIvanMvdGltZU1hbmFnZXIuanMPL2Nzcy9wbGF5ZXIuY3NzMWZhMjUvY3NlMTFfYTAwX2lpcG4zN2F1cjMvY3NlMTEtMTIwNDIwMjUtMDgwMC5tcDQDNTI4AzgwMAcyMzIzMTExCDUxOTExNjcyCjFfMmN2YWY4OGIeLyogMCw0ODcwNjEsNTA5NTQ5MzogNDg3MDYxICovpAFkako4TWpNeU16RXhNWHhKRzVBUVlFV1I1ajVBaVFZMlA2WkRQbUxDY1hrbDAwbFJiNXg0aC1yUElNSTUyd2w2NnAxdThJSnY1SkJnS2hVOTllUVlKZWtxUUgwQl9Ga05rNlhPdE55aEgxT0FvVlFuX0s3RUpHRzY4TjZaMkxYVEZvVUlFNFIwZlZYcV9oeWRoeFB5QkpFYUJvMU5FN1RGS2FieKQBZGpKOE1qTXlNekV4TVh4Skc1QVFZRVdSNWo1QWlRWTJQNlpEUG1MQ2NYa2wwMGxSYjV4NGgtclBJTUk1MndsNjZwMXU4SUp2NUpCZ0toVTk5ZVFZSmVrcVFIMEJfRmtOazZYT3ROeWhIMU9Bb1ZRbl9LN0VKR0c2OE42WjJMWFRGb1VJRTRSMGZWWHFfaHlkaHhQeUJKRWFCbzFORTdURkthYngTcGlwLXBhcmVudC1pbi1sYXJnZQVmYWxzZQVmYWxzZQM4MDAEMTkyMAM5NzADODEwAzk3MAM1NjhkAg0PZBYIZg8VATIvandwbGF5ZXIvYmluLXJlbGVhc2UvandwbGF5ZXIuanM/dHM9MjAxODAzMjMtMTMxOWQCAQ8VGQQxMjgwBDE5MjADNjQwAzk2MAM2NDAEMTI4MAM2NDAEMTQ1MAM4MTAEMTI5MAQxNDUwAzgxMAI0MAVGYWxzZQQxMjgwAzc2OAQxOTIwCDc2NjI1NjY5Ai0xBUZhbHNlABUvandwbGF5ZXIvYmluLXJlbGVhc2UCW10ABWh0bWw1ZAICDw8WAh8GaGQWAmYPFQEAZAIDD2QWAmYPFQEAZAIPDw8WAh8GZ2QWCgICDw8WAh8GaGRkAgQPZBYCZg9kFgICAQ8PFgIeD0NvbW1hbmRBcmd1bWVudAUHMTExMzc2NWRkAgYPFgIfBmgWAgIBDw8WAh8HZGRkAggPFgIfBmgWAgIBD2QWAmYPZBYCAgEPZBYGZg8VASVQb2RjYXN0SW50ZXJhY3Rpb25zX0NhcHRpb25TdWdnZXN0aW9uZAIBDw8WAh8JBQcxMTEzNzY1ZGQCAw9kFgQCAQ9kFgQCDQ8PFgIfCQUHMTExMzc2NWRkAg8PDxYCHwkFBzExMTM3NjVkZAIDD2QWAgIBDw8WAh8HBSl+L2xvZ2luLz9kZXN0PSUyZndhdGNoJTJmZmEyNSUyZmNzZTExX2EwMGRkAgoPZBYCZg9kFgICAQ9kFgZmDxUBIVBvZGNhc3RJbnRlcmFjdGlvbnNfUmVwb3J0UHJvYmxlbWQCAQ8PFgIfCQUHMTExMzc2NWRkAgMPZBYGAgMPEA8WAh4LXyFEYXRhQm91bmRnZGQWAWZkAgcPDxYCHwkFBzExMTM3NjVkZAILDw8WAh8GaGRkAgUPZBYIZg8VAQ9JbnN0cnVjdG9yUGFuZWxkAgEPZBYCAgEPZBYEZg8VARRTdGF0dXMgTm90IEF2YWlsYWJsZWQCAQ9kFgJmDxUBFDEvMS8wMDAxIDEyOjAwOjAwIEFNZAIDD2QWAmYPZBYEAgEPZBYCAgMPFgIfCAL/////D2QCAw9kFgYCAw9kFgJmDxUCAABkAgUPZBYCZg8VAQBkAgcPZBYCZg8VAQBkAgUPZBYCAgMPEA8WAh8KZ2RkFgFmZAIFDxYCHwgCCxYWAgEPZBYCAgEPZBYEZg8VAQZXZWVrIDBkAgEPFgIfCAIBFgJmD2QWAgIBDw8WBh4IQ3NzQ2xhc3MFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBS9odHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvMR4EXyFTQgICZBYCZg8VAghUaHUgOS8yNTpmYTI1L2NzZTExX2EwMF9paXBuMzdhdXIzL2NzZTExLTA5MjUyMDI1LTA4MDAuZHVhbGNhc3QubXA0ZAICD2QWAgIBD2QWBGYPFQEGV2VlayAxZAIBDxYCHwgCAhYEZg9kFgICAQ8PFgYfCwUYb3RoZXItbWVkaWEgdmlkZW8gbWF0Y2ggHwcFL2h0dHBzOi8vcG9kY2FzdC51Y3NkLmVkdS93YXRjaC9mYTI1L2NzZTExX2EwMC8yHwwCAmQWAmYPFQIIVHVlIDkvMzA6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0wOTMwMjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCAQ9kFgICAQ8PFgYfCwUYb3RoZXItbWVkaWEgdmlkZW8gbWF0Y2ggHwcFL2h0dHBzOi8vcG9kY2FzdC51Y3NkLmVkdS93YXRjaC9mYTI1L2NzZTExX2EwMC8zHwwCAmQWAmYPFQIIVGh1IDEwLzI6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0xMDAyMjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCAw9kFgICAQ9kFgRmDxUBBldlZWsgMmQCAQ8WAh8IAgIWBGYPZBYCAgEPDxYGHwsFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBS9odHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvNB8MAgJkFgJmDxUCCFR1ZSAxMC83OmZhMjUvY3NlMTFfYTAwX2lpcG4zN2F1cjMvY3NlMTEtMTAwNzIwMjUtMDgwMC5kdWFsY2FzdC5tcDRkAgEPZBYCAgEPDxYGHwsFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBS9odHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvNR8MAgJkFgJmDxUCCFRodSAxMC85OmZhMjUvY3NlMTFfYTAwX2lpcG4zN2F1cjMvY3NlMTEtMTAwOTIwMjUtMDgwMC5kdWFsY2FzdC5tcDRkAgQPZBYCAgEPZBYEZg8VAQZXZWVrIDNkAgEPFgIfCAICFgRmD2QWAgIBDw8WBh8LBRhvdGhlci1tZWRpYSB2aWRlbyBtYXRjaCAfBwUvaHR0cHM6Ly9wb2RjYXN0LnVjc2QuZWR1L3dhdGNoL2ZhMjUvY3NlMTFfYTAwLzYfDAICZBYCZg8VAglUdWUgMTAvMTQ6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0xMDE0MjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCAQ9kFgICAQ8PFgYfCwUYb3RoZXItbWVkaWEgdmlkZW8gbWF0Y2ggHwcFL2h0dHBzOi8vcG9kY2FzdC51Y3NkLmVkdS93YXRjaC9mYTI1L2NzZTExX2EwMC83HwwCAmQWAmYPFQIJVGh1IDEwLzE2OmZhMjUvY3NlMTFfYTAwX2lpcG4zN2F1cjMvY3NlMTEtMTAxNjIwMjUtMDgwMC5kdWFsY2FzdC5tcDRkAgUPZBYCAgEPZBYEZg8VAQZXZWVrIDRkAgEPFgIfCAICFgRmD2QWAgIBDw8WBh8LBRhvdGhlci1tZWRpYSB2aWRlbyBtYXRjaCAfBwUvaHR0cHM6Ly9wb2RjYXN0LnVjc2QuZWR1L3dhdGNoL2ZhMjUvY3NlMTFfYTAwLzgfDAICZBYCZg8VAglUdWUgMTAvMjE6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0xMDIxMjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCAQ9kFgICAQ8PFgYfCwUYb3RoZXItbWVkaWEgdmlkZW8gbWF0Y2ggHwcFL2h0dHBzOi8vcG9kY2FzdC51Y3NkLmVkdS93YXRjaC9mYTI1L2NzZTExX2EwMC85HwwCAmQWAmYPFQIJVGh1IDEwLzIzOmZhMjUvY3NlMTFfYTAwX2lpcG4zN2F1cjMvY3NlMTEtMTAyMzIwMjUtMDgwMC5kdWFsY2FzdC5tcDRkAgYPZBYCAgEPZBYEZg8VAQZXZWVrIDVkAgEPFgIfCAICFgRmD2QWAgIBDw8WBh8LBRhvdGhlci1tZWRpYSB2aWRlbyBtYXRjaCAfBwUwaHR0cHM6Ly9wb2RjYXN0LnVjc2QuZWR1L3dhdGNoL2ZhMjUvY3NlMTFfYTAwLzEwHwwCAmQWAmYPFQIJVHVlIDEwLzI4OmZhMjUvY3NlMTFfYTAwX2lpcG4zN2F1cjMvY3NlMTEtMTAyODIwMjUtMDgwMC5kdWFsY2FzdC5tcDRkAgEPZBYCAgEPDxYGHwsFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBTBodHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvMTEfDAICZBYCZg8VAglUaHUgMTAvMzA6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0xMDMwMjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCBw9kFgICAQ9kFgRmDxUBBldlZWsgNmQCAQ8WAh8IAgIWBGYPZBYCAgEPDxYGHwsFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBTBodHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvMTIfDAICZBYCZg8VAghUdWUgMTEvNDpmYTI1L2NzZTExX2EwMF9paXBuMzdhdXIzL2NzZTExLTExMDQyMDI1LTA4MDAuZHVhbGNhc3QubXA0ZAIBD2QWAgIBDw8WBh8LBRhvdGhlci1tZWRpYSB2aWRlbyBtYXRjaCAfBwUwaHR0cHM6Ly9wb2RjYXN0LnVjc2QuZWR1L3dhdGNoL2ZhMjUvY3NlMTFfYTAwLzEzHwwCAmQWAmYPFQIIVGh1IDExLzY6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0xMTA2MjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCCA9kFgICAQ9kFgRmDxUBBldlZWsgN2QCAQ8WAh8IAgEWAmYPZBYCAgEPDxYGHwsFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBTBodHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvMTQfDAICZBYCZg8VAglUaHUgMTEvMTM6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0xMTEzMjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCCQ9kFgICAQ9kFgRmDxUBBldlZWsgOGQCAQ8WAh8IAgIWBGYPZBYCAgEPDxYGHwsFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBTBodHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvMTUfDAICZBYCZg8VAglUdWUgMTEvMTg6ZmEyNS9jc2UxMV9hMDBfaWlwbjM3YXVyMy9jc2UxMS0xMTE4MjAyNS0wODAwLmR1YWxjYXN0Lm1wNGQCAQ9kFgICAQ8PFgYfCwUYb3RoZXItbWVkaWEgdmlkZW8gbWF0Y2ggHwcFMGh0dHBzOi8vcG9kY2FzdC51Y3NkLmVkdS93YXRjaC9mYTI1L2NzZTExX2EwMC8xNh8MAgJkFgJmDxUCCVRodSAxMS8yMDpmYTI1L2NzZTExX2EwMF9paXBuMzdhdXIzL2NzZTExLTExMjAyMDI1LTA4MDAuZHVhbGNhc3QubXA0ZAIKD2QWAgIBD2QWBGYPFQEGV2VlayA5ZAIBDxYCHwgCARYCZg9kFgICAQ8PFgYfCwUYb3RoZXItbWVkaWEgdmlkZW8gbWF0Y2ggHwcFMGh0dHBzOi8vcG9kY2FzdC51Y3NkLmVkdS93YXRjaC9mYTI1L2NzZTExX2EwMC8xNx8MAgJkFgJmDxUCCVR1ZSAxMS8yNTpmYTI1L2NzZTExX2EwMF9paXBuMzdhdXIzL2NzZTExLTExMjUyMDI1LTA4MDAuZHVhbGNhc3QubXA0ZAILD2QWAgIBD2QWBGYPFQEHV2VlayAxMGQCAQ8WAh8IAgIWBGYPZBYCAgEPDxYGHwsFGG90aGVyLW1lZGlhIHZpZGVvIG1hdGNoIB8HBTBodHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvMTgfDAICZBYCZg8VAghUdWUgMTIvMjpmYTI1L2NzZTExX2EwMF9paXBuMzdhdXIzL2NzZTExLTEyMDIyMDI1LTA4MDAuZHVhbGNhc3QubXA0ZAIBD2QWAgIBDw8WBh8LBRpjdXJyZW50LW1lZGlhIHZpZGVvIG1hdGNoIB8HBTBodHRwczovL3BvZGNhc3QudWNzZC5lZHUvd2F0Y2gvZmEyNS9jc2UxMV9hMDAvMTkfDAICZBYCZg8VAghUaHUgMTIvNDpmYTI1L2NzZTExX2EwMF9paXBuMzdhdXIzL2NzZTExLTEyMDQyMDI1LTA4MDAuZHVhbGNhc3QubXA0ZAIGDw8WAh8HBSh+L1BvZGNhc3RzL1NjaGVkdWxlLmFzcHg/cG9kY2FzdElEPTE5OTQyZGQCBw8WAh8FBVcKIENoZWNraW5nIEthbHR1cmEgc3RhdHVzClJlYXNvbiBmb3IgMV8yY3ZhZjg4YjogRW50cnkgZXhpc3RzIGFuZCBpcyBub3QgbW9kZXJhdGVkIGF3YXlkZLA6cZe3dVogiiit+KRmLTbkD+8KUSDAJhdMJICdN1Cn">
+	</div>
+	
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl09'];
+	if (!theForm) {
+    theForm = document.ctl09;
+}
+	function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+	//]]>
+</script>
+
+	
+<script src="/WebResource.axd?d=3VHEq0Dps1XyvEsKxXcd1d8SdtLeD-lPSkGrNBt9CxbwiWYcXB5RnVEADeXc9q8LklJhzN-Do2AwAFCKnFqqflEdHEmolGFJayK8AzKGPEo1&amp;t=638901284248157332" type="text/javascript"></script>
+
+	
+<script src="/ScriptResource.axd?d=Kjie0pp1kiKFdyrr6YrcZqXjy_TBfbGZX_76tLh99x_bWNHeh76UlbPgCpALqtF-4FyQcSeEhb5XUOg9AarwqCWhXR7LEYRMwVSZAHQ9tLsynwJpHeDp9hzi64E5T1GXWsRbDWsDf-uW_0ka6wI69irL7m1nPn3KLXXVkZFOJF6rGGi9cNtnJqhdnK9G8PKO0&amp;t=5c0e0825" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=914bXYwZRr6TjqsXst5i2YTbrB0tIYOk2swUWauLvLXl0RcJZhhIaIy-ldRoVa2B4xTlSp1n2o0-Gxbg-dTEsvL94kmKGEdz_O2h0X0nAzz6W03hvNIDXnm1hqE9yU6MrXM7aVHLm1zMbhMA1epGelHQNi7oUqexzDkx0r7MMg921VNR8EvHgsyxAvuBbg8A0&amp;t=5c0e0825" type="text/javascript"></script>
+	<div class="aspNetHidden">
+
+		<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="48BD8049">
+		<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAANgci8HxWQXjlJXelLoJryHDxgqVRIxYPhfz73agNhUqZgKt3qiZFGgt+R9bWycTmod09cYvPVwSsDtMZ9gjih0aFnAfw9ec0LNh6DFWphJOg==">
+	</div>
+		<div id="lecture_Panel">
+		
+
+		<div id="LectureHeader">
+		<h2>Lecture 19, 12/4/2025</h2>
+		<p style="float: left; padding-top: 4px; margin-left: 1em; font-family: italic; margin-bottom: 0;">8:00 AM-Center Hall 115</p>
+
+		<!-- Mediatype Picker -->
+		
+		
+
+
+		<div class="clear">&nbsp;</div>
+		</div>
+
+		
+<div id="mediaspace">
+	<div id="kaltura_player" class="kWidgetIframeContainer" style="aspect-ratio: auto 800 / 586.333; overflow: hidden;"><iframe id="kaltura_player_ifp" scrolling="no" name="kaltura_player_ifp" class="mwEmbedKalturaIframe" title="The Kaltura Dynamic Video Player" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" allow="autoplay *; fullscreen *; encrypted-media *" style="border: 0px; max-width: 100%; max-height: 100%; width: 100%; height: 100%;"></iframe></div>
+</div>
+
+
+
+<div class="spacer">&nbsp;</div>
+
+<script src="//cdnapi.kaltura.com/p/2323111/sp/232311100/embedIframeJs/uiconf_id/51911672/partner_id/2323111"></script>
+<script src="/js/kalturaHelper.js?ts=1687298930" type="text/javascript"></script>
+<script src="/js/timeManager.js" type="text/javascript"></script>
+<link href="/css/player.css" rel="stylesheet">
+
+<script>
+	let timer = new TimeManager({ 
+		fileBase: 'fa25/cse11_a00_iipn37aur3/cse11-12042025-0800.mp4',
+		kaltura: true
+		});
+
+	let resizer = new ResizePlayer({
+		'player': 'kaltura_player', 
+		'spacer': 'kaltura_spacer', 
+		'timer': timer,
+		'media_height': 528, 
+		'media_width': 800
+		});
+
+	window.addEvent("domready", function() 
+		{
+		kWidget.embed({
+			'targetId': 'kaltura_player',
+			'wid': '_2323111',
+			'uiconf_id' : '51911672',
+			'entry_id' : '1_2cvaf88b',
+			/* 0,487061,5095493: 487061 */
+			'ks': 'djJ8MjMyMzExMXxJG5AQYEWR5j5AiQY2P6ZDPmLCcXkl00lRb5x4h-rPIMI52wl66p1u8IJv5JBgKhU99eQYJekqQH0B_FkNk6XOtNyhH1OAoVQn_K7EJGG68N6Z2LXTFoUIE4R0fVXq_hydhxPyBJEaBo1NE7TFKabx',
+			'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides. 
+				'mediaProxy.mediaPlayFrom': timer.retrievePlayTime(),
+				'ks': 'djJ8MjMyMzExMXxJG5AQYEWR5j5AiQY2P6ZDPmLCcXkl00lRb5x4h-rPIMI52wl66p1u8IJv5JBgKhU99eQYJekqQH0B_FkNk6XOtNyhH1OAoVQn_K7EJGG68N6Z2LXTFoUIE4R0fVXq_hydhxPyBJEaBo1NE7TFKabx',
+				"dualScreen":  {
+					"defaultDualScreenViewId": "pip-parent-in-large",
+					"plugin": false,
+					"enabled": false
+					}
+				}
+			});
+
+
+		kWidget.addReadyCallback(function(playerId)
+			{
+			var player = document.getElementById(playerId);
+
+			timer.options.player = player;
+			resizer.options.player = player;
+			
+			player.kBind('onpause', resizer.onPause);
+			player.kBind('onplay', resizer.onPlay);
+
+			player.kBind('updateLayout', resizer.setCaptionLayout);
+			player.kBind('playerUpdatePlayhead', timer.saveKalturaPlayTime);
+			player.kBind('changedClosedCaptions', function() {resizer.setCaptionLayout.delay(100);});
+			});
+		});
+</script>
+<style>
+#tdr_2_col_content 
+	{
+	width: 800px;
+	max-width: 1920px; 
+	}
+
+body #tdr_login_content, body #tdr_title_content, body #tdr_nav_content, body #tdr_search_content, body #tdr_crumbs_content, body #tdr_content_content, body #tdr_footer_content
+	{
+	max-width: 970px;
+	}
+
+#lecture_Panel 
+	{
+	margin-bottom: 1em;
+	}
+
+#lecture_Panel .spacer
+	{
+	height: 0;
+	}
+
+@media screen and (max-width: 810px) 
+	{
+	body #tdr_2_col_content
+		{
+		width: 100% !important; 
+		}
+
+	body div.jwplayer, body video
+		{
+		/*margin-left: calc(-0.85em);
+		margin-right: calc(-0.9em);
+		width: calc(100% + 1.7em) !important;*/
+		width: 102% !important;
+		margin-left: -1%;
+		}
+	}
+
+@media screen and (max-width: 970px) 
+	{
+	body #tdr_2_col_nav
+		{
+		width: 100%; 
+		position: relative; 
+		padding-bottom: 20em;
+		}
+
+	body #tdr_2_col_nav .styled 
+		{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0; 
+		}
+
+	body .LectureList
+		{
+		padding-top: 0.7em;
+		}
+	body .LectureList .week 
+		{
+		margin-top: 0; 
+		line-height: 2.4em;
+		padding-left: 104px;
+		text-indent: -104px; 
+		}
+	body .LectureList .week *
+		{
+		text-indent: 0; 
+		}
+
+	body .LectureList .week h3,
+	body .LectureList .week .lecture
+		{
+		display: inline-block;
+		vertical-align: top;
+		}
+
+	body .LectureList .week h3
+		{
+		width: 100px; 
+		}
+
+	body .LectureList .week .lecture
+		{
+		width: 10em;
+		border-style: none; 
+		}
+	}
+
+@media screen and (max-height: 568px)
+	{
+	#tdr_2_col_content
+		{
+		position: relative; 
+		padding-bottom: 30px; 
+		}
+	}
+
+.KMCDebugPanel 
+	{
+	padding: 1em;
+	border: 1px solid #faa;
+	background: #fee;
+	 word-break: break-all;
+	}
+</style>
+
+		
+		<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('PodcastInteractions$ScriptManager1', 'ctl09', ['tPodcastInteractions$ctl00','PodcastInteractions_ctl00','tPodcastInteractions$ctl03','PodcastInteractions_ctl03'], [], [], 90, '');
+		//]]>
+</script>
+
+
+<div id="afterLecture">
+	<div id="controls">
+		<div id="speedcontrol" class="control" style="display: none;">
+			Play speed: 
+			<button id="slower" class="button">-</button>
+			<button id="faster" class="button">+</button>
+			<span id="currentSpeed" aria-live="polite" aria-atomic="true">Normal (1x)</span>
+		</div>
+
+		
+
+		<div id="captioncontrol" class="control" style="display: none;">
+			Caption Location: 
+			<select id="captionLocation">
+				<option value="above">Above</option>
+				<option value="top">Top</option>
+				<option value="bottom">Bottom</option>
+				<option value="below">Below</option>
+			</select>
+		</div>
+	</div>
+
+	<ul id="actionLinks" class="meta afterlecture">
+		<li class="first">
+			<div id="PodcastInteractions_ctl00" class="updatePanel">
+			
+			<a id="PodcastInteractions_like_LinkButton" class="LikeButton liked" href="javascript:__doPostBack('PodcastInteractions$like_LinkButton','')">Like</a>
+			
+		</div>
+		</li>
+
+		
+
+		
+
+		<li>
+			<div id="PodcastInteractions_ctl03" class="updatePanel">
+			
+			
+<!--
+Start Report Panel 
+-->
+
+<div id="reportProblemAnchor" class="reportProblemAnchor calloutAnchor" clientid="PodcastInteractions_ReportProblem">
+<a id="PodcastInteractions_ReportProblem_problem_LinkButton" class="problemLinkButton" href="javascript:__doPostBack('PodcastInteractions$ReportProblem$problem_LinkButton','')">Report a Problem</a>
+
+
+</div>
+
+<!--
+End Report Panel 
+-->
+
+			
+		</div>
+		</li>
+	</ul>
+
+	<!-- End Other Options -->
+
+	<p id="likes" aria-live="polite" aria-atomic="true">
+		<span id="PodcastInteractions_likes_Label"></span>
+	</p>
+
+	
+</div>
+
+	
+	</div>
+
+	
+
+	
+	</form>
+
+	<!--
+	
+	End Lecture 
+	
+	-->
+
+</div><!-- end #tdr_2_col_content -->
+
+</div>
+<!--
+  
+   End AccessGranted Panel 
+  
+  -->
+
+	
+	<div id="tdr_2_col_nav">	
+
+		<div class="styled" role="navigation">
+			<h2>Podcasts</h2>
+
+<ul id="page_nav">
+	<li><a href="/">Course List</a></li>
+	<li><a href="/howto.shtml">How to View</a></li>
+	<li><a href="/info/">Podcast Your Course</a></li>
+	<li><a href="/about/">About</a></li>
+</ul>
+			
+		</div>
+		
+
+					<!-- Lecture Column - was the class=  used anymore? -->
+		<div id="lecture" class="">
+		
+			<!--			  
+			   Start list of lectures 			  
+			  -->
+			<div class="LectureList">
+			
+			
+				<div class="week">
+	
+					<h3>Week 0</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/1">Thu 9/25
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-09252025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 1</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/2">Tue 9/30
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-09302025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/3">Thu 10/2
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10022025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 2</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/4">Tue 10/7
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10072025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/5">Thu 10/9
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10092025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 3</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/6">Tue 10/14
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10142025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/7">Thu 10/16
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10162025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 4</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/8">Tue 10/21
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10212025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/9">Thu 10/23
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10232025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 5</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/10">Tue 10/28
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10282025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/11">Thu 10/30
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-10302025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 6</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/12">Tue 11/4
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-11042025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/13">Thu 11/6
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-11062025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 7</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/14">Thu 11/13
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-11132025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 8</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/15">Tue 11/18
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-11182025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/16">Thu 11/20
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-11202025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 9</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/17">Tue 11/25
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-11252025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+				<div class="week">
+	
+					<h3>Week 10</h3>
+
+					
+					<div class="lecture">
+						<a class="other-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/18">Tue 12/2
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-12022025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+					<div class="lecture">
+						<a class="current-media video match " href="https://podcast.ucsd.edu/watch/fa25/cse11_a00/19">Thu 12/4
+							<div class="timepieContainer"><span class="timePie" forfile="fa25/cse11_a00_iipn37aur3/cse11-12042025-0800.dualcast.mp4" style="display: none;"></span></div>
+						</a>
+					</div>
+					
+				
+</div>
+			
+			
+			<div class="week">
+				<h3>&nbsp;</h3>
+				<div class="lecture"><a class="other-media match" href="../../Podcasts/Schedule.aspx?podcastID=19942">Schedule</a></div>
+			</div>
+			</div><!-- end div.LectureList -->
+		</div>
+		<!--			  
+		   End list of lectures			  
+		  -->		
+	</div><!-- end #tdr_2_col_nav -->
+<!-- 
+	
+ Checking Kaltura status
+Reason for 1_2cvaf88b: Entry exists and is not moderated away
+-->
+	</div>
+</div>
+
+<div id="tdr_footer">
+	<div id="tdr_footer_content">
+		<div id="tdr_address"> 
+			<span id="tdr_address_place">UC San Diego</span> 
+			<span id="tdr_address_street">9500 Gilman Dr.</span> 
+			<span id="tdr_address_city_state_zip">La Jolla, CA 92093</span> 
+			<span id="tdr_address_phone">(858) 534-2230</span>
+		</div>
+		<div id="tdr_copyright">
+			Copyright ©<span id="tdr_copyright_year">2006-2025</span> Regents of the University of California. All rights reserved.
+
+			1.5.2
+			Production
+		</div>
+
+		<ul id="tdr_footer_links"> 
+			<li><a href="http://www.ucsd.edu/_about/legal/index.html">Terms &amp; Conditions</a></li> 
+			<li id="tdr_footer_feedback"> <a href="mailto:servicedesk@ucsd.edu">Feedback</a> </li>
+		</ul>    
+	</div>
+</div>
+<img src="https://a4.ucsd.edu/tritON/imagebug">
+
+
+</div></body></html>

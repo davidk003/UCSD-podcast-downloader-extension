@@ -14,6 +14,22 @@ pnpm install
 pnpm dev
 ```
 
+## Testing
+
+All test code and files are contained within `/tests`.
+
+To run all vitest unit tests:
+```bash
+pnpm run test
+```
+
+
+If you run into problems with the playwright install dependencies, use the following command to install deps:
+
+```bash
+pnpm exec playwright install --with-deps
+```
+
 ## Building for Production
 
 Since Chrome and Firefox have different manifest requirements (e.g., `sidebar_action` for Firefox vs `side_panel` for Chrome), we use a cross-browser build system.
@@ -44,3 +60,4 @@ pnpm run build
 - `public/manifest.jsonc`: The source of truth for the extension manifest (supports comments).
 - `plugins/`: Contains custom Vite plugins for manifest conversion and cross-browser cleanup.
 - `src/`: Background scripts and side panel UI components.
+- `tests/`: Vitest unit tests.

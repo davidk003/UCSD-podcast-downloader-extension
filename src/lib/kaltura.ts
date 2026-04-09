@@ -4,11 +4,19 @@ export interface KalturaInfo {
   ks: string | null;
 }
 
+export interface SubtitleInfo {
+  id: string;
+  language: string;
+  languageCode: string;
+  label: string;
+  src: string;
+}
+
 /**
  * Extract Kaltura video information from the podcast page HTML and return
  * video id, account id and session token in interface object
  */
-async function getInfo(html: string): Promise<KalturaInfo | null> {
+async function getInfo(html: string): Promise<[KalturaInfo, SubtitleInfo[]] | null> {
   // Extract entry_id (video identifier)
   const entryIdMatch: string[] | null = html.match(
     /entry_id['":\s=]+([a-zA-Z0-9_-]+)/
@@ -25,12 +33,30 @@ async function getInfo(html: string): Promise<KalturaInfo | null> {
     console.error("Failed to extract required Kaltura configuration");
     return null;
   }
-
-  return {
+  const kInfo: KalturaInfo = {
     entryId: entryIdMatch[1],
     partnerId: partnerIdMatch[1],
     ks: ksMatch ? ksMatch[1] : null,
   };
+
+  const subtitleInfo: SubtitleInfo[] = [];
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const subtitleElements = doc.querySelectorAll('track');
+  subtitleElements.forEach((element) => {
+    const id = element.getAttribute('id');
+    const language = element.getAttribute('language');
+    const languageCode = element.getAttribute('languageCode');
+    const label = element.getAttribute('label');
+    const src = element.getAttribute('src');
+    if (!id || !language || !languageCode || !label || !src) {
+      console.error("Failed to extract subtitle information, one or more attributes are missing");
+      return;
+    }
+    subtitleInfo.push({ id, language, languageCode, label, src });
+  });
+
+  return [kInfo, subtitleInfo];
 }
 
 /**
@@ -49,9 +75,8 @@ async function constructVideoUrl(info: KalturaInfo): Promise<string> {
  * Construct the API URL for retrieving subtitle information
  */
 async function constructSubtitleUrl(info: KalturaInfo): Promise<string> {
-  return `https://cdnapisec.kaltura.com/api_v3/index.php?service=caption_captionasset&apiVersion=3.1&expiry=86400&clientTag=kwidget:v2.101&format=1&ignoreNull=1&action=list&filter:objectType=KalturaAssetFilter&filter:entryIdEqual=${
-    info.entryId
-  }&filter:statusEqual=2&pager:pageSize=50&ks=${info.ks || ""}`;
+  return `https://cdnapisec.kaltura.com/api_v3/index.php?service=caption_captionasset&apiVersion=3.1&expiry=86400&clientTag=kwidget:v2.101&format=1&ignoreNull=1&action=list&filter:objectType=KalturaAssetFilter&filter:entryIdEqual=${info.entryId
+    }&filter:statusEqual=2&pager:pageSize=50&ks=${info.ks || ""}`;
 }
 
 /**
@@ -60,34 +85,28 @@ async function constructSubtitleUrl(info: KalturaInfo): Promise<string> {
  */
 export async function extractKalturaUrls(html: string): Promise<{
   videoUrl: string;
-  subtitleUrl: string | null;
+  subtitleTracks: SubtitleInfo[] | null;
 } | null> {
   try {
     const info = await getInfo(html);
 
     if (!info) {
-      // getInfo already logs error
       return null;
     }
 
-    // Validation: Check for essential fields
-    if (!info.entryId || !info.partnerId) {
+    // Validation: Check kalturainfo for essential fields
+    if (!info[0].entryId || !info[0].partnerId) {
       console.error("Invalid Kaltura Info: Missing entryId or partnerId");
       return null;
     }
-
-    const videoUrl = await constructVideoUrl(info);
-
-    let subtitleUrl: string | null = null;
-    if (info.ks) {
-      subtitleUrl = await constructSubtitleUrl(info);
-    } else {
-      console.warn("No KS token available, cannot construct subtitle API URL");
+    const videoUrl = await constructVideoUrl(info[0]);
+    if (info[1].length === 0) {
+      console.error("No subtitle information found");
     }
 
     return {
       videoUrl,
-      subtitleUrl,
+      subtitleTracks: info[1] || null,
     };
   } catch (error) {
     console.error("Error extracting Kaltura URLs:", error);
